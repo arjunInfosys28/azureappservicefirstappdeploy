@@ -1,0 +1,27 @@
+## Visual Studio and VS Code
+.vs/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+*.user
+*.suo
+
+## .NET build output
+[Bb]in/
+[Oo]bj/
+publish/
+
+## Test and coverage output
+TestResults/
+coverage/
+
+## Local configuration and secrets
+appsettings.Local.json
+appsettings.*.Local.json
+*.pfx
+*.snk
+
+## OS files
+.DS_Store
+Thumbs.db

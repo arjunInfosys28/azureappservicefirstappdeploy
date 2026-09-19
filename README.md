@@ -206,6 +206,89 @@ To connect the local repository to a new GitHub repository, create an empty repo
 
 Do not add a password or personal access token directly to a remote URL. Use GitHub authentication or Git Credential Manager.
 
+## Connect Existing Local Code To An Existing GitHub Repository
+
+Use this process when the application already exists on your computer and you have already created an empty repository on GitHub.
+
+### 1. Open the local project folder
+
+Open the folder that contains the `.csproj` file in VS Code. In this project, that is the folder containing `azure-app-arjundiff.csproj`.
+
+Open a PowerShell terminal in the same folder:
+
+```powershell
+Get-Location
+git status
+```
+
+### 2. Initialize Git if needed
+
+If Git says the folder is not a repository, initialize it and create the first commit:
+
+```powershell
+git init -b main
+git add .
+git commit -m "Initial commit"
+```
+
+If the folder is already a Git repository, do not run `git init` again. Review `git status` and commit any changes you intend to publish.
+
+### 3. Connect the local repository to GitHub
+
+Copy the HTTPS URL of the GitHub repository and add it as the remote named `origin`:
+
+```powershell
+git remote add origin https://github.com/<your-user>/<your-repository>.git
+git remote -v
+```
+
+For this project, the remote is:
+
+```powershell
+https://github.com/arjunInfosys28/azureappservicefirstappdeploy.git
+```
+
+If `origin` already exists and points to the wrong repository, update it instead:
+
+```powershell
+git remote set-url origin https://github.com/<your-user>/<your-repository>.git
+```
+
+### 4. Push the local branch
+
+Push the local `main` branch and remember the upstream connection:
+
+```powershell
+git branch -M main
+git push -u origin main
+```
+
+After this command, later updates can usually be published with:
+
+```powershell
+git add .
+git commit -m "Describe the change"
+git push
+```
+
+### 5. Authenticate securely
+
+When GitHub asks you to sign in, use the browser sign-in flow, Git Credential Manager, or a GitHub personal access token through the credential prompt. Never put a token directly into the repository URL or commit it to a file.
+
+The GitHub repository should be empty before the first push. If GitHub already contains a README, license, or other commit, the histories are different and Git may reject the push. The safest approach is to create an empty GitHub repository, or carefully merge the histories before pushing.
+
+### 6. Confirm the connection
+
+Use these commands to confirm the remote and branch:
+
+```powershell
+git remote -v
+git branch --show-current
+git status
+```
+
+Then refresh the GitHub repository page. The source code, `README.md`, and project files should be visible there.
+
 ## Future Deployment Checklist
 
 Use this checklist each time:
